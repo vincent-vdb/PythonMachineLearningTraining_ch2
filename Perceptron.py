@@ -45,13 +45,16 @@ class Perceptron(object):
           errors = 0
           for xi, target in zip(X, y):
               update = self.eta * (target - self.predict(xi))
-              print("update : ",update)
-              print("w_[1:] : ",self.w_[1])
+#              print(update)
+#              print(xi)
+#              print("update : ",update)
+#              print("w_[1:] : ",self.w_[1])
               self.w_[1:] += update * xi
               self.w_[0] += update
-              print("w_[1:] after update: ",self.w_[1])
+#              print("w_[1:] after update: ",self.w_[1])
               errors += int(update != 0.0)
           self.errors_.append(errors)
+          print("end of iteration ",_+1)
       return self
 
   def net_input(self, X):
