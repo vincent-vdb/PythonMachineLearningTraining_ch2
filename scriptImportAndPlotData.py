@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-from Perceptron import *
-
+#from Perceptron import *
+from myObjectPerceptron import *
 
 #import data from database
 df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
@@ -26,11 +26,11 @@ plt.show()
 
 print("before perceptron instantiation")
 
-ppn = Perceptron(eta=0.1, n_iter=10)
+ppn = Perceptron(0.1, 10)
 print("before perceptron fit")
 ppn.fit(x,y)
 
-plt.plot(range(1,len(ppn.errors_)+1),ppn.errors_,marker='o')
+plt.plot(range(1,len(ppn._errors)+1),ppn._errors,marker='o')
 
 plt.xlabel('Epochs')
 plt.ylabel('Number of misclassifications')
