@@ -27,7 +27,5 @@ class Perceptron(object):
 
   def predict(self, x):
     y = np.dot(x,self._weights) + self._bias
-    if(y<0):
-      return -1
-    else:
-      return 1
+    return np.where(y<0,-1,1)    
+

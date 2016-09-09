@@ -3,12 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import ListedColormap
 
-#from Perceptron import *
-from myObjectPerceptron import *
 
 #import data from database
 df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
-df.tail
+#df.tail
 
 
 #put data to x and y vectors
@@ -26,21 +24,8 @@ plt.ylabel('petal length')
 plt.legend(loc='upper left')
 plt.show()
 """
-#print("before perceptron instantiation")
 
-ppn = Perceptron(0.1, 10)
-#print("before perceptron fit")
-ppn.fit(x,y)
-
-plt.plot(range(1,len(ppn._errors)+1),ppn._errors,marker='o')
-
-plt.xlabel('Epochs')
-plt.ylabel('Number of misclassifications')
-plt.show()
-
-
-
-def plotDecisionRegions(X, y, classifier, resolution=0.02):
+def plot_decision_regions(X, y, classifier, resolution=0.02):
 
     # setup marker generator and color map
     markers = ('s', 'x', 'o', '^', 'v')
@@ -51,7 +36,7 @@ def plotDecisionRegions(X, y, classifier, resolution=0.02):
     x1_min, x1_max = X[:, 0].min() - 1, X[:, 0].max() + 1
     x2_min, x2_max = X[:, 1].min() - 1, X[:, 1].max() + 1
     xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution),
-                           np.arange(x2_min, x2_max, resolution))
+                         np.arange(x2_min, x2_max, resolution))
     Z = classifier.predict(np.array([xx1.ravel(), xx2.ravel()]).T)
     Z = Z.reshape(xx1.shape)
     plt.contourf(xx1, xx2, Z, alpha=0.4, cmap=cmap)
@@ -68,7 +53,7 @@ def plotDecisionRegions(X, y, classifier, resolution=0.02):
 
 
 
-plotDecisionRegions(x, y, classifier=ppn)
+plot_decision_regions(x, y, classifier=ppn)
 plt.xlabel('sepal length [cm]')
 plt.ylabel('petal length [cm]')
 plt.legend(loc='upper left')
@@ -76,6 +61,7 @@ plt.legend(loc='upper left')
 plt.tight_layout()
 # plt.savefig('./perceptron_2.png', dpi=300)
 plt.show()
+
 
 
 
