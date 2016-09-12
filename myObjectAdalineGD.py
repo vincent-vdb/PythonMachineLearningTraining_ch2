@@ -21,16 +21,16 @@ class AdalineGD(object):
       self._bias += self._etha*np.sum(y-self.activation(x))
 
 
-      self._weights += self._etha*np.dot(np.sum(y-self.activation(x)),x.T)
-
+#      self._weights += self._etha*np.dot(np.sum(y-self.activation(x)),x.T)
+      self._weights += self._etha*np.dot(x.T,(y-self.activation(x)))
 
 #        update = yi - self.predict(xi)
 #        if(update != 0):
 #          tmpError += 1
 #          self._bias += update*self._etha
 #          self._weights += update*self._etha*xi
-
-      self._errors.append(costFunction(x,y))
+      print(self.costFunction(x,y))
+      self._errors.append(self.costFunction(x,y))
 
 
   def predict(self, x):

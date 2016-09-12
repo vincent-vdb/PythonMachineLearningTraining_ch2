@@ -4,7 +4,10 @@ import numpy as np
 from matplotlib.colors import ListedColormap
 
 #from Perceptron import *
-from myObjectPerceptron import *
+#from myObjectPerceptron import *
+
+from myObjectAdalineGD import *
+#from AdalineGD import *
 
 #import data from database
 df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
@@ -28,7 +31,8 @@ plt.show()
 """
 #print("before perceptron instantiation")
 
-ppn = Perceptron(0.1, 10)
+#ppn = Perceptron(0.1, 10)
+ppn = AdalineGD(0.001, 10)
 #print("before perceptron fit")
 ppn.fit(x,y)
 

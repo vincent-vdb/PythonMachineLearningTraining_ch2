@@ -1,4 +1,6 @@
 
+import numpy as np
+
 class AdalineGD(object):
     """ADAptive LInear NEuron classifier.
 
@@ -38,7 +40,8 @@ class AdalineGD(object):
 
         """
         self.w_ = np.zeros(1 + X.shape[1])
-        self.cost_ = []
+#        self.cost_ = []
+        self._errors = []
 
         for i in range(self.n_iter):
             output = self.net_input(X)
@@ -46,7 +49,9 @@ class AdalineGD(object):
             self.w_[1:] += self.eta * X.T.dot(errors)
             self.w_[0] += self.eta * errors.sum()
             cost = (errors**2).sum() / 2.0
-            self.cost_.append(cost)
+#            self.cost_.append(cost)
+            self._errors.append(cost)
+
         return self
 
     def net_input(self, X):
