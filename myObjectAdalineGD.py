@@ -15,20 +15,10 @@ class AdalineGD(object):
     self._weights = np.zeros(x.shape[1])
 
     for iEpochs in range(0,self._nEpochs):
-      tmpError = 0
-#      for xi, yi in zip(x,y):
-#      update = costFunctionPrime(x,y)
-      self._bias += self._etha*np.sum(y-self.activation(x))
+      tmperrors = y - self.activation(x)
+      self._bias += self._etha*np.sum(tmperrors)
+      self._weights += self._etha*np.dot(x.T,tmperrors)
 
-
-#      self._weights += self._etha*np.dot(np.sum(y-self.activation(x)),x.T)
-      self._weights += self._etha*np.dot(x.T,(y-self.activation(x)))
-
-#        update = yi - self.predict(xi)
-#        if(update != 0):
-#          tmpError += 1
-#          self._bias += update*self._etha
-#          self._weights += update*self._etha*xi
       print(self.costFunction(x,y))
       self._errors.append(self.costFunction(x,y))
 
@@ -38,9 +28,8 @@ class AdalineGD(object):
     return np.where(y<0,-1,1)    
 
   def costFunction(self, x, y):
-    phi = np.dot(x, self._weights) + self._bias
-    j = np.sum(np.square(y - phi))
-    return j
+    phi = self.activation(x)
+    return 0.5*np.sum(np.square(y - phi))
 
   def costFunctionPrime(self,x,y):
     phi = np.dot(x, self._weights) + self._bias

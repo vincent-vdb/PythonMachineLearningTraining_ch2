@@ -50,6 +50,7 @@ class AdalineGD(object):
             self.w_[0] += self.eta * errors.sum()
             cost = (errors**2).sum() / 2.0
 #            self.cost_.append(cost)
+            print(cost)
             self._errors.append(cost)
 
         return self

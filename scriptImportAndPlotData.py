@@ -19,6 +19,9 @@ y = df.iloc[0:100,4].values
 y = np.where(y == 'Iris-setosa',-1,1)
 x = df.iloc[0:100,[0,2]].values
 
+x[:,0] = (x[:,0] - x[:,0].mean())/x[:,0].std()
+x[:,1] = (x[:,1] - x[:,1].mean())/x[:,1].std()
+
 #plot data
 """
 plt.scatter(x[:50,0], x[:50,1], color='red',marker='o',label='setosa')
@@ -29,11 +32,9 @@ plt.ylabel('petal length')
 plt.legend(loc='upper left')
 plt.show()
 """
-#print("before perceptron instantiation")
 
 #ppn = Perceptron(0.1, 10)
-ppn = AdalineGD(0.001, 10)
-#print("before perceptron fit")
+ppn = AdalineGD(0.01, 10)
 ppn.fit(x,y)
 
 plt.plot(range(1,len(ppn._errors)+1),ppn._errors,marker='o')
